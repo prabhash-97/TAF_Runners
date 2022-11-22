@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSTest", "Task_2\MSTest.csproj", "{54D080AD-88C4-4E1C-A3C6-3F7064C58726}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTest", "NUnitTest\NUnitTest.csproj", "{9560731E-8424-4463-97AC-2C0272F89D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{4B4C7688-A89C-47FE-8A78-993EF05CE34B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54D080AD-88C4-4E1C-A3C6-3F7064C58726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D080AD-88C4-4E1C-A3C6-3F7064C58726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D080AD-88C4-4E1C-A3C6-3F7064C58726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D080AD-88C4-4E1C-A3C6-3F7064C58726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9560731E-8424-4463-97AC-2C0272F89D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9560731E-8424-4463-97AC-2C0272F89D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9560731E-8424-4463-97AC-2C0272F89D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9560731E-8424-4463-97AC-2C0272F89D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B4C7688-A89C-47FE-8A78-993EF05CE34B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4C7688-A89C-47FE-8A78-993EF05CE34B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4C7688-A89C-47FE-8A78-993EF05CE34B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4C7688-A89C-47FE-8A78-993EF05CE34B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3AFBDA8B-1128-49DA-AD01-D91B30FDCA93}
+	EndGlobalSection
+EndGlobal
