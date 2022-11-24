@@ -15,7 +15,13 @@ namespace XUnitTest
         [Fact]
         public void Test1()
         {
-            outputHelper.WriteLine("XUnit test Method 1 output");
+            int arg1 = 10;
+            int arg2 = 10;
+            double expected = 0;
+
+            double result = Calculator.Sub(arg1, arg2);
+            Assert.Equal(expected, result);
+            outputHelper.WriteLine("expected and actual values are equal");
         }
 
         [Fact(Skip = "XUnit Test ignore")]
@@ -27,9 +33,12 @@ namespace XUnitTest
         [Fact]
         public void Test3()
         {
-            string expected = "test";
-            string actual = "test1";
-            Assert.Equal(expected, actual);
+            int arg1 = 10;
+            int arg2 = 10;
+            double expected = 21;
+
+            double result = Calculator.Add(arg1, arg2);
+            Assert.Equal(expected, result);
             outputHelper.WriteLine("expected and actual values are not equal");
         }
 
