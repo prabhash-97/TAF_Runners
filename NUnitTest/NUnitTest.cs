@@ -28,34 +28,45 @@ namespace NUnitTest
         }
 
         [Test]
-        public void Test1()
+        public void OpenAndSerachGoogle1()
         {
             driver.Url = "http://www.google.com";
+
             string test = "Geeks";
             Assert.AreEqual("Geeks", test);
+
             driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
             driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
+
+            string title = "Geek";
+            Assert.IsTrue(driver.FindElement(By.XPath("//*[@id=\"rhs\"]/block-component/div/div[1]/div/div/div/div[1]/div/div/div[2]/div/a/div/div/div[2]/div[1]")).Text.Contains(title));
+
             TestContext.WriteLine("Input text Geeks");
         }
 
         [Test]
         [Ignore("NUnit Test ignore")]
-        public void Test2()
+        public void TestIgnore()
         {
             TestContext.WriteLine("Nunit test Method 2 output");
             Assert.Pass();
         }
 
         [Test]
-        public void Test3()
+        public void OpenAndSerachGoogle2()
         {
             driver.Url = "http://www.google.com";
+
             string test = "Geeks";
             Assert.AreEqual("Geek", test);
+
             driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
             driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
+
+            string title = "Geek";
+            Assert.IsTrue(driver.FindElement(By.XPath("//*[@id=\"rhs\"]/block-component/div/div[1]/div/div/div/div[1]/div/div/div[2]/div/a/div/div/div[2]/div[1]")).Text.Contains(title));
         }
-        
+
 
         [TearDown]
         public void NunitTestCleanup()

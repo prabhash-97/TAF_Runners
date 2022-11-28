@@ -18,28 +18,33 @@ namespace XUnitTest
         }
 
         [Fact]
-        public void Test1()
+        public void OpenAndSerachGoogle1()
         {
             driver.Url = "http://www.google.com";
+
             string test = "Geeks";
             Assert.Equal("Geeks", test);
+
             driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
             driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
+
             outputHelper.WriteLine("Input text Geeks");
         }
 
         [Fact(Skip = "XUnit Test ignore")]
-        public void Test2()
+        public void TestIgnore()
         {
             outputHelper.WriteLine("XUnit test Method 2 output");
         }
 
         [Fact]
-        public void Test3()
+        public void OpenAndSerachGoogle2()
         {
             driver.Url = "http://www.google.com";
+
             string test = "Geeks";
             Assert.Equal("Geek", test);
+
             driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
             driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
         }
@@ -48,7 +53,7 @@ namespace XUnitTest
         {
             if (driver != null)
             {
-                driver.Close();
+                driver.Quit();
                 driver = null;
             }
             
