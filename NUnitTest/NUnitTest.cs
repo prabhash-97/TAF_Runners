@@ -30,7 +30,7 @@ namespace NUnitTest
 
             double result = Calculator.Sub(arg1, arg2);
 
-            Assert.That(result, Is.EqualTo(expected));
+            Assert.AreEqual(expected,result);
 
             TestContext.WriteLine("expected and actual values are equal");
             Assert.Pass();
