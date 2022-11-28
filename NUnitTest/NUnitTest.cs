@@ -1,3 +1,6 @@
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+
 [assembly: LevelOfParallelism(2)]
 namespace NUnitTest
 {
@@ -6,6 +9,7 @@ namespace NUnitTest
     public class Tests
     {
         static int testcounter = 0;
+        IWebDriver driver;
 
         [OneTimeSetUp]
         public static void NunitTestClassSetup()
@@ -16,6 +20,8 @@ namespace NUnitTest
         [SetUp]
         public void Setup()
         {
+            driver = new ChromeDriver("C:\\Users\\UPRABKA\\Documents\\C# traning\\5 - Selenium Web Driver\\chromedriver_win32\\");
+            driver.Manage().Window.Maximize();
             testcounter++;
             Console.WriteLine("Test started number {0}", testcounter);
             TestContext.WriteLine("Nunit test Test SetUp output");
@@ -24,16 +30,12 @@ namespace NUnitTest
         [Test]
         public void Test1()
         {
-            int arg1 = 10;
-            int arg2 = 10;
-            double expected = 0;
-
-            double result = Calculator.Sub(arg1, arg2);
-
-            Assert.AreEqual(expected,result);
-
-            TestContext.WriteLine("expected and actual values are equal");
-            Assert.Pass();
+            driver.Url = "http://www.google.com";
+            string test = "Geeks";
+            Assert.AreEqual("Geeks", test);
+            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
+            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
+            TestContext.WriteLine("Input text Geeks");
         }
 
         [Test]
@@ -47,22 +49,18 @@ namespace NUnitTest
         [Test]
         public void Test3()
         {
-            int arg1 = 10;
-            int arg2 = 10;
-            double expected = 21;
-
-            double result = Calculator.Add(arg1, arg2);
-
-            Assert.That(result, Is.EqualTo(expected));
-
-            TestContext.WriteLine("expected and actual values are not equal");
-            Assert.Pass();
+            driver.Url = "http://www.google.com";
+            string test = "Geeks";
+            Assert.AreEqual("Geek", test);
+            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
+            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
         }
         
 
         [TearDown]
         public void NunitTestCleanup()
         {
+            driver.Close();
             Console.WriteLine("Test number {0} is compleated", testcounter);
             TestContext.WriteLine("Nunit test Test CleanUp output");
         }

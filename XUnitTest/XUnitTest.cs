@@ -1,27 +1,31 @@
 using Xunit.Abstractions;
 using Xunit.Sdk;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace XUnitTest
 {
     public class XUnitTest : IClassFixture<XUnitSetUpClass>
     {
         private readonly ITestOutputHelper outputHelper;
+        IWebDriver driver;
 
         public XUnitTest(ITestOutputHelper testOutputHelper)
         {
             outputHelper = testOutputHelper;
+            driver = new ChromeDriver("C:\\Users\\UPRABKA\\Documents\\C# traning\\5 - Selenium Web Driver\\chromedriver_win32\\");
+            driver.Manage().Window.Maximize();
         }
 
         [Fact]
         public void Test1()
         {
-            int arg1 = 10;
-            int arg2 = 10;
-            double expected = 0;
-
-            double result = Calculator.Sub(arg1, arg2);
-            Assert.Equal(expected, result);
-            outputHelper.WriteLine("expected and actual values are equal");
+            driver.Url = "http://www.google.com";
+            string test = "Geeks";
+            Assert.Equal("Geeks", test);
+            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
+            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
+            outputHelper.WriteLine("Input text Geeks");
         }
 
         [Fact(Skip = "XUnit Test ignore")]
@@ -33,17 +37,21 @@ namespace XUnitTest
         [Fact]
         public void Test3()
         {
-            int arg1 = 10;
-            int arg2 = 10;
-            double expected = 21;
-
-            double result = Calculator.Add(arg1, arg2);
-            Assert.Equal(expected, result);
-            outputHelper.WriteLine("expected and actual values are not equal");
+            driver.Url = "http://www.google.com";
+            string test = "Geeks";
+            Assert.Equal("Geek", test);
+            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
+            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
         }
 
         public void Dispose()
         {
+            if (driver != null)
+            {
+                driver.Close();
+                driver = null;
+            }
+            
             int i = 0;
         }
     }
