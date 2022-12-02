@@ -15,20 +15,24 @@ namespace XUnitTest
             outputHelper = testOutputHelper;
             driver = new ChromeDriver("C:\\Users\\UPRABKA\\Documents\\C# traning\\5 - Selenium Web Driver\\chromedriver_win32\\");
             driver.Manage().Window.Maximize();
+            driver.Url = "https://www.saucedemo.com/";
         }
 
+        private IWebElement username => driver.FindElement(By.XPath("//*[@id=\"user-name\"]"));
+        private IWebElement password => driver.FindElement(By.XPath("//*[@id=\"password\"]"));
+        private IWebElement submitbtn => driver.FindElement(By.XPath("//*[@id=\"login-button\"]"));
+
+
         [Fact]
-        public void OpenAndSerachGoogle1()
+        public void UserLogin()
         {
-            driver.Url = "http://www.google.com";
+            username.SendKeys("standard_user");
+            password.SendKeys("secret_sauce");
+            submitbtn.Click();
 
-            string test = "Geeks";
-            Assert.Equal("Geeks", test);
+            Assert.Equal("https://www.saucedemo.com/inventory.html", driver.Url);
 
-            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
-            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
-
-            outputHelper.WriteLine("Input text Geeks");
+            outputHelper.WriteLine("User logged sucesfully"); ;
         }
 
         [Fact(Skip = "XUnit Test ignore")]
@@ -38,15 +42,15 @@ namespace XUnitTest
         }
 
         [Fact]
-        public void OpenAndSerachGoogle2()
+        public void LoginFail()
         {
-            driver.Url = "http://www.google.com";
+            username.SendKeys("standard_user");
+            password.SendKeys("secret_sauce");
+            submitbtn.Click();
 
-            string test = "Geeks";
-            Assert.Equal("Geek", test);
+            Assert.Equal("https://www.saucedemo.com/inventor.html", driver.Url);
 
-            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
-            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
+            outputHelper.WriteLine("User logged sucesfully"); ;
         }
 
         public void Dispose()
@@ -63,7 +67,6 @@ namespace XUnitTest
 
     public class XUnitSetUpClass
     {
-
         public XUnitSetUpClass()
         {
             int i = 0;

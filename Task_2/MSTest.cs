@@ -22,60 +22,59 @@ namespace Task_2
         [TestInitialize]
         public void TestSetup()
         {
+
+            TestContext.WriteLine("MSTest Test Setup output");
+
             driver = new ChromeDriver("C:\\Users\\UPRABKA\\Documents\\C# traning\\5 - Selenium Web Driver\\chromedriver_win32\\");
             driver.Manage().Window.Maximize();
+            driver.Url = "https://www.saucedemo.com/";
+
             testcounter++;
             Console.WriteLine("Test started number {0}", testcounter);
-            TestContext.WriteLine("MSTest Test Setup output");
         }
 
+        private IWebElement username => driver.FindElement(By.XPath("//*[@id=\"user-name\"]"));
+        private IWebElement password => driver.FindElement(By.XPath("//*[@id=\"password\"]"));
+        private IWebElement submitbtn => driver.FindElement(By.XPath("//*[@id=\"login-button\"]"));
+
         [TestMethod]
-        public void OpenAndSerachGoogle1()
+        public void UserLogin()
         {
-            driver.Url = "http://www.google.com";
+            username.SendKeys("standard_user");
+            password.SendKeys("secret_sauce");
+            submitbtn.Click();
 
-            string test = "Geeks";
-            Assert.AreEqual("Geeks", test);
+            Assert.AreEqual("https://www.saucedemo.com/inventory.html", driver.Url);
 
-            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
-            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
-
-            string title = "Geek";
-            Assert.IsTrue(driver.FindElement(By.XPath("//*[@id=\"rhs\"]/block-component/div/div[1]/div/div/div/div[1]/div/div/div[2]/div/a/div/div/div[2]/div[1]")).Text.Contains(title));
-
-            TestContext.WriteLine("Input text Geeks");
+            TestContext.WriteLine("User logged sucesfully");
         }
 
         [Ignore("MSTest ignore")]
         [TestMethod]
         public void TestIgnore()
         {
-
             TestContext.WriteLine("MSTest method 2 output");
         }
 
         [TestMethod]
-        public void OpenAndSerachGoogle2()
+        public void LoginFail()
         {
-            driver.Url = "http://www.google.com";
+            username.SendKeys("standard_user");
+            password.SendKeys("secret_sauce");
+            submitbtn.Click();
 
-            string test = "Geeks";
-            Assert.AreEqual("Geek", test);
+            Assert.AreEqual("https://www.saucedemo.com/inventor.html", driver.Url);
 
-            driver.FindElement(By.XPath("//input[@title='Search']")).SendKeys(test);
-            driver.SwitchTo().ActiveElement().SendKeys(Keys.Enter);
-
-            string title = "Geek";
-            Assert.IsTrue(driver.FindElement(By.XPath("//*[@id=\"rhs\"]/block-component/div/div[1]/div/div/div/div[1]/div/div/div[2]/div/a/div/div/div[2]/div[1]")).Text.Contains(title));
+            TestContext.WriteLine("Login unsucesful");
         }
 
 
         [TestCleanup]
         public void MSTestCleanup()
         {
+            TestContext.WriteLine("MSTest Test Cleanup output");
             driver.Dispose();
             Console.WriteLine("Test number {0} is compleated", testcounter);
-            TestContext.WriteLine("MSTest Test Cleanup output");
         }
 
         [ClassCleanup]
